@@ -136,13 +136,8 @@ router.post('/apply', async (req, res) => {
     const db = client.db("placements");
     let data = await db.collection("jobs").findOne({_id:jobId});
 
-    if(data.applicants.applied.indexOf(id)||data.applicants.rejected.indexOf(id)){
-      res.send({
-        messege: "you have already applied for job!"
-      });
-
-    }
-   else{
+    
+  
     data.applicants.applied.push(id);
     let update= await db.collection("jobs").updateOne({_id:jobId},{$set:{applicants:data.applicants}})
 
@@ -152,7 +147,7 @@ router.post('/apply', async (req, res) => {
     res.send({
       messege: "job created successfully!"
     });
-  }
+  
   } catch (error) {
     console.log(error);
   } finally {
