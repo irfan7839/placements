@@ -137,7 +137,12 @@ router.post('/apply', async (req, res) => {
     const db = client.db("placements");
     let data = await db.collection("jobs").findOne({_id:jobId});
 
+<<<<<<< HEAD
    
+=======
+    
+  
+>>>>>>> 0c5d267ce131d72e89feea71e58a2eb3b4796fae
     data.applicants.applied.push(id);
     let update= await db.collection("jobs").updateOne({_id:jobId},{$set:{applicants:data.applicants}})
 
